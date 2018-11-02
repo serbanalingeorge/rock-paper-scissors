@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors", "RockPaperScissors\RockPaperScissors.csproj", "{3DF00AA1-DA72-4616-9C91-BD1446736BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTests", "NUnitTests\NUnitTests.csproj", "{A537F226-705A-4140-949D-D8D88F1C44EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF00AA1-DA72-4616-9C91-BD1446736BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF00AA1-DA72-4616-9C91-BD1446736BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF00AA1-DA72-4616-9C91-BD1446736BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF00AA1-DA72-4616-9C91-BD1446736BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A537F226-705A-4140-949D-D8D88F1C44EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A537F226-705A-4140-949D-D8D88F1C44EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A537F226-705A-4140-949D-D8D88F1C44EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A537F226-705A-4140-949D-D8D88F1C44EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA458D33-6E69-45C9-AF2B-C5A285B9B06F}
+	EndGlobalSection
+EndGlobal
