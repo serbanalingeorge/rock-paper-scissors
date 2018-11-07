@@ -8,7 +8,6 @@ namespace RockPaperScissors.StrategyPattern
 {
     public interface IWeapon
     {
-        void Use();
-        
+        int Use();
     }
 }

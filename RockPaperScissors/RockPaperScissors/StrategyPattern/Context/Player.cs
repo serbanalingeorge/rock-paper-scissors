@@ -17,11 +17,10 @@ namespace RockPaperScissors.StrategyPattern
             weapon = newWeapon;
         }
 
-        public void Attack()
+        public int Attack()
         {
-            weapon.Use();
+            return (int) weapon.Use();
         }
-
         public int getWins()
         {
             return wins;
@@ -31,5 +30,38 @@ namespace RockPaperScissors.StrategyPattern
         {
             wins += 1;
         }
+
+        public int PlayerStartGame()
+        {
+            Console.WriteLine("Type: \n(1) for ROCK," +
+                              " \n(2) for PAPER," +
+                              " \n(3) for SCISSORS!");
+
+            string input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                SetWeapon(new RockStrategy());
+                Attack();
+                return  (int)Weapon.Rock;
+            }
+            else if (input == "2")
+            {
+                SetWeapon(new PaperStrategy());
+                Attack();
+                return (int)Weapon.Paper;
+            }
+            else if (input == "3")
+            {
+                SetWeapon(new ScissorsStrategy());
+                Attack();
+                return (int)Weapon.Scissors;
+            }
+            else
+            {
+                return -2;
+            }
+        }
+
     }
 }

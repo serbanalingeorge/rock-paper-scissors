@@ -8,9 +8,11 @@ namespace RockPaperScissors.StrategyPattern
 {
     public class SpockStrategy : IWeapon
     {
-        public void Use()
+        public int Use()
         {
+            int value =(int) Weapon.Spock;
             Console.WriteLine(Weapon.Spock);
+            return value;
         }
     }
 }

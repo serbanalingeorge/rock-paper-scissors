@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,11 @@ namespace RockPaperScissors.StrategyPattern
     public class RandomStrategy : IWeapon
     {
         private Random random = new Random();
-        public void Use()
+        public int Use()
         {
-            Console.WriteLine((Weapon)random.Next(1, 4));
-        }
-
-        public void Action()
-        {
-            
+            int value =(int) ((Weapon) random.Next(1, 4));
+            Console.Write("Computer --> " + value);
+            return value;
         }
     }
 }

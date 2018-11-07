@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RockPaperScissors.StrategyPattern
+﻿namespace RockPaperScissors
 {
     public enum Outcome
     {
-        WIN,
-        LOSE,
-        DRAW
+        Won = 1,
+        Lost = -1,
+        Draw = 0,
+        Invalid = -2
     }
 }

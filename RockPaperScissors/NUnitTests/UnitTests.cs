@@ -5,88 +5,131 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using RockPaperScissors;
-using RockPaperScissors.Classes;
+using RockPaperScissors.StrategyPattern;
 
 namespace NUnitTests
 {
     class UnitTests
     {
-        
-        private RandomPlayer oponent;
+        private Rule rule;
+
         [SetUp]
         public void Creation()
         {
-            oponent = new RandomPlayer();
+            rule = new Rule();
         }
+        //(1 WON) (0 DRAW) (-1 LOST)
         [Test]
         public void Returns_Win_For_Rock_And_Scissors()
         {
 
-            string result = oponent.Result("rock", "scissors");
-            Assert.AreEqual(oponent.message2, result);
+            int result = rule.DecideWinner((int)Weapon.Rock,(int)Weapon.Scissors);
+            Assert.AreEqual((int)Outcome.Won, result);
         }
 
         [Test]
         public void Returns_Win_For_Scissors_And_Paper()
         {
-            string result = oponent.Result("scissors", "paper");
-            Assert.AreEqual(oponent.message2, result);
+            int result = rule.DecideWinner((int)Weapon.Scissors,(int)Weapon.Paper);
+            Assert.AreEqual((int)Outcome.Won, result);
         }
 
         [Test]
         public void Returns_Win_For_Paper_And_Rock()
         {
-            string result = oponent.Result("paper", "rock");
-            Assert.AreEqual(oponent.message2, result);
+            int result = rule.DecideWinner((int)Weapon.Paper,(int)Weapon.Rock);
+            Assert.AreEqual((int)Outcome.Won, result);
         }
 
         [Test]
         public void Returns_Lose_For_Scissors_And_Rock()
         {
-            string result = oponent.Result("scissors", "rock");
-            Assert.AreEqual(oponent.message3,result);
+            int result = rule.DecideWinner((int)Weapon.Scissors,(int)Weapon.Rock);
+            Assert.AreEqual((int)Outcome.Lost,result);
         }
 
         [Test]
         public void Returns_Lose_For_Paper_And_Scissors()
         {
-            string result = oponent.Result("paper", "scissors");
-            Assert.AreEqual(oponent.message3, result);
+            int result = rule.DecideWinner((int)Weapon.Paper,(int)Weapon.Scissors);
+            Assert.AreEqual((int)Outcome.Lost, result);
         }
 
         [Test]
         public void Returns_Lose_For_Rock_And_Paper()
         {
-            string result = oponent.Result("rock", "paper");
-            Assert.AreEqual(oponent.message3, result);
+            int result = rule.DecideWinner((int)Weapon.Rock,(int)Weapon.Paper);
+            Assert.AreEqual((int)Outcome.Lost, result);
         }
 
         [Test]
         public void Returns_Draw_For_Rock_And_Rock()
         {
-            string result = oponent.Result("rock", "rock");
-            Assert.AreEqual(oponent.message4, result);
+            int result = rule.DecideWinner((int)Weapon.Rock, (int)Weapon.Rock);
+            Assert.AreEqual((int)Outcome.Draw, result);
         }
 
         [Test]
         public void Returns_Draw_For_Paper_And_Paper()
         {
-            string result = oponent.Result("paper", "paper");
-            Assert.AreEqual(oponent.message4, result);
+            int result = rule.DecideWinner((int)Weapon.Paper, (int)Weapon.Paper);
+            Assert.AreEqual((int)Outcome.Draw, result);
         }
 
         [Test]
         public void Returns_Draw_For_Scissors_And_Scissors()
         {
-            string result = oponent.Result("scissors", "scissors");
-            Assert.AreEqual(oponent.message4, result);
+            int result = rule.DecideWinner((int)Weapon.Scissors, (int)Weapon.Scissors);
+            Assert.AreEqual((int)Outcome.Draw, result);
         }
 
         [Test]
-        public void Returns_Message_For_Non_RPS_Choise()
+        public void Returns_Invalid()
         {
-            string result = oponent.Result("", "");
-            Assert.AreEqual(oponent.message1, result);
+            int result = rule.DecideWinner((int) Weapon.Invalid, (int) Weapon.Invalid);
+            Assert.AreEqual((int)Outcome.Invalid,result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_Rock_And_InvalidWeapon()
+        {
+            int result = rule.DecideWinner((int) Weapon.Rock, (int) Weapon.Invalid);
+            Assert.AreEqual((int)Outcome.Invalid,result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_Paper_And_InvalidWeapon()
+        {
+            int result = rule.DecideWinner((int)Weapon.Paper, (int)Weapon.Invalid);
+            Assert.AreEqual((int)Outcome.Invalid, result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_Scissors_And_InvalidWeapon()
+        {
+            int result = rule.DecideWinner((int)Weapon.Scissors, (int)Weapon.Invalid);
+            Assert.AreEqual((int)Outcome.Invalid, result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_InvalidWeapon_And_Rock()
+        {
+            int result = rule.DecideWinner((int)Weapon.Invalid, (int)Weapon.Rock);
+            Assert.AreEqual((int)Outcome.Invalid, result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_InvalidWeapon_And_Paper()
+        {
+            int result = rule.DecideWinner((int)Weapon.Invalid, (int)Weapon.Paper);
+            Assert.AreEqual((int)Outcome.Invalid, result);
+        }
+
+        [Test]
+        public void Returns_Invalid_For_InvalidWeapon_And_Scissors()
+        {
+            int result = rule.DecideWinner((int)Weapon.Invalid, (int)Weapon.Scissors);
+            Assert.AreEqual((int)Outcome.Invalid, result);
         }
     }
 }

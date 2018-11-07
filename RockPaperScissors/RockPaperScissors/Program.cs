@@ -18,15 +18,10 @@ namespace RockPaperScissors
     {
         static void Main(string[] args)
         {
-            /*IWeapon weapon = null;*/
-            Player player = new Player();
-            player.SetWeapon(new PaperStrategy());
-            player.Attack();
-            RandomStrategy computer = new RandomStrategy();
-            computer.Use();
+            Game game = new Game();
 
-            computer.Use();
-            Console.ReadLine();
+            game.DisplayGame();
+            game.PlayerChooseGame();
         }
     }
 }
