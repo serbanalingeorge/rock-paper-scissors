@@ -11,6 +11,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using RockPaperScissors.StrategyPattern;
+using RockPaperScissors.Web;
 
 namespace RockPaperScissors
 {
@@ -19,9 +20,13 @@ namespace RockPaperScissors
         static void Main(string[] args)
         {
             Game game = new Game();
+            game.NavigateToMainPage();
 
             game.DisplayGame();
+            
             game.PlayerChooseGame();
+
+            Console.ReadLine();
         }
     }
 }

@@ -4,7 +4,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using RockPaperScissors.Enums;
 using RockPaperScissors.StrategyPattern;
+using RockPaperScissors.Web;
 
 namespace RockPaperScissors
 {
@@ -79,7 +83,10 @@ namespace RockPaperScissors
             int val1 =(int) player1.Attack();
             Console.WriteLine("\n");
             int val2 =(int) player2.Attack();
-            Console.WriteLine("\n\nRESULT: {0} \n -1 \t(Computer 1 LOST) \n  1 \t(Computer 1 WON) \n  0 \t(It is a DRAW)",
+            Console.WriteLine("\n\nRESULT: {0} " +
+                              "\n -1 \t(Computer 1 LOST) " +
+                              "\n  1 \t(Computer 1 WON) " +
+                              "\n  0 \t(It is a DRAW)",
                 rule.DecideWinner(val1, val2));
             DisplayMatrix();
         }
@@ -90,7 +97,11 @@ namespace RockPaperScissors
             player1.SetWeapon(new RandomStrategy());
             /*Console.WriteLine("\n");*/
             int val2 = (int)player1.Attack();
-            Console.WriteLine("\n\nRESULT: {0} \n -1 \t(Player LOST) \n  1 \t(Player WON) \n  0 \t(It is a DRAW) \n -2 \t(Invalid Entries)",
+            Console.WriteLine("\n\nRESULT: {0} " +
+                              "\n -1 \t(Player LOST) " +
+                              "\n  1 \t(Player WON) " +
+                              "\n  0 \t(It is a DRAW) " +
+                              "\n -2 \t(Invalid Entries)",
                 rule.DecideWinner(val1, val2));
             DisplayMatrix();
         }
@@ -103,10 +114,40 @@ namespace RockPaperScissors
             Console.WriteLine("Second player's turn:");
             int val2 = player2.PlayerStartGame();
             Console.Clear();
-            Console.WriteLine("\n\nRESULT: {0} \n -1 \t(Player 1 LOST) \n  1 \t(Player 1 WON) \n  0 \t(It is a DRAW) \n -2 \t(Invalid Entries)",
+            Console.WriteLine("\n\nRESULT: {0} " +
+                              "\n -1 \t(Player 1 LOST) " +
+                              "\n  1 \t(Player 1 WON) " +
+                              "\n  0 \t(It is a DRAW) " +
+                              "\n -2 \t(Invalid Entries)",
                 rule.DecideWinner(val1, val2));
             DisplayMatrix();
         }
 
-}
+        public string NavigateToMainPage()
+        {
+            
+            using (var driver = WebDriver.CreateFor(Driver.Chrome))
+            {
+                driver.Navigate().GoToUrl("https://www.instructables.com/id/How-to-Play-Rock-Paper-Scissors-Lizard-Spock/");
+                string rock = driver.FindElement(By.CssSelector("#step1 > h2")).Text;
+                string paper = driver.FindElement(By.CssSelector("#step2 > h2")).Text;
+                string scissors = driver.FindElement(By.CssSelector("#step3 > h2")).Text;
+                string lizard = driver.FindElement(By.CssSelector("#step4 > h2")).Text;
+                string spock = driver.FindElement(By.CssSelector("#step5 > h2")).Text;
+
+                List<string> weapons = new List<string>();
+                weapons.Add(rock);
+                weapons.Add(paper);
+                weapons.Add(scissors);
+                weapons.Add(lizard);
+                weapons.Add(spock);
+
+                foreach (string weapon in weapons)
+                {
+                    Console.WriteLine(weapon);
+                }
+                return null;
+            }
+        }
+    }
 }
