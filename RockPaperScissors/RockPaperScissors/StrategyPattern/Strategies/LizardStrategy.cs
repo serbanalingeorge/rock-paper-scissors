@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RockPaperScissors.StrategyPattern.Interface;
 
-namespace RockPaperScissors.StrategyPattern
+namespace RockPaperScissors.StrategyPattern.Strategies
 {
     public class LizardStrategy : IWeapon
     {
         public int Use()
         {
-            int value =(int) Weapon.Lizard;
+            var value =(int) Weapon.Lizard;
             Console.WriteLine(Weapon.Lizard);
             return value;
         }

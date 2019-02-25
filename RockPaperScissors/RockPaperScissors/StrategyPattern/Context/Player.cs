@@ -1,65 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RockPaperScissors.StrategyPattern.Interface;
+using RockPaperScissors.StrategyPattern.Strategies;
 
-namespace RockPaperScissors.StrategyPattern
+namespace RockPaperScissors.StrategyPattern.Context
 {
-    public class Player
+    public class Player : IPlayer
     {
-        private static IWeapon weapon;
-        private int wins;
+        private static IWeapon _weapon;
 
         public void SetWeapon(IWeapon newWeapon)
         {
-            weapon = newWeapon;
+            _weapon = newWeapon;
         }
 
         public int Attack()
         {
-            return (int) weapon.Use();
-        }
-        public int getWins()
-        {
-            return wins;
+            return (int) _weapon.Use();
         }
 
-        public void IncrementWins()
+
+        public int Play()
         {
-            wins += 1;
-        }
+            DisplayMessage.Weapon();
+            
+            var input = Console.ReadLine();
 
-        public int PlayerStartGame()
-        {
-            Console.WriteLine("Type: \n(1) for ROCK," +
-                              " \n(2) for PAPER," +
-                              " \n(3) for SCISSORS!");
-
-            string input = Console.ReadLine();
-
-            if (input == "1")
+            switch (input)
             {
-                SetWeapon(new RockStrategy());
-                Attack();
-                return  (int)Weapon.Rock;
-            }
-            else if (input == "2")
-            {
-                SetWeapon(new PaperStrategy());
-                Attack();
-                return (int)Weapon.Paper;
-            }
-            else if (input == "3")
-            {
-                SetWeapon(new ScissorsStrategy());
-                Attack();
-                return (int)Weapon.Scissors;
-            }
-            else
-            {
-                return -2;
+                case "1":
+                    _weapon = new RockStrategy();
+                    return (int) Weapon.Rock;
+                case "2":
+                    _weapon = new PaperStrategy();
+                    return (int) Weapon.Paper;
+                case "3":
+                    _weapon = new ScissorsStrategy();
+                    return (int) Weapon.Scissors;
+                default:
+                    return (int) Weapon.Invalid;
             }
         }
 
