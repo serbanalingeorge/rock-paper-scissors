@@ -11,14 +11,14 @@ namespace RockPaperScissors.DBConnection
 {
     public class DbConnection
     {
-        private string connectionString = "Server=(localdb)\\v13.0;Database=TestDB1;Integrated Security=True;";
+        private const string ConnectionString = "Server=(localdb)\\v13.0;Database=TestDB1;Integrated Security=True;";
         private SqlConnection conn;
         private SqlCommand cmd;
         private SqlDataReader reader;
 
         private void OpenConnection()
         {
-           conn = new SqlConnection(connectionString);
+           conn = new SqlConnection(ConnectionString);
            conn.Open();
         }
 
@@ -46,7 +46,7 @@ namespace RockPaperScissors.DBConnection
             reader.Close();
         }
 
-        private void GetSearchResults()
+        private static void GetSearchResults()
         {
             if (Debugger.IsAttached)
             {

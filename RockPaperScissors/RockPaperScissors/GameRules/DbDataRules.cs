@@ -17,25 +17,24 @@ namespace RockPaperScissors.GameRules
                 Console.WriteLine(Outcome.Won);
                 return Outcome.Won.ToString();
             }
-            else if ((shape1 == "rock" && shape2 == "paper") ||
-                     (shape1 == "paper" && shape2 == "scissors") ||
-                     (shape1 == "scissors" && shape2 == "1"))
+            if ((shape1 == "rock" && shape2 == "paper") ||
+                (shape1 == "paper" && shape2 == "scissors") ||
+                (shape1 == "scissors" && shape2 == "1"))
             {
                 Console.WriteLine(Outcome.Lost);
                 return Outcome.Lost.ToString();
             }
-            else if ((shape1 == "rock" && shape2 == "rock") ||
-                     (shape1 == "paper" && shape2 == "paper") ||
-                     (shape1 == "scissors" && shape2 == "scissors"))
+            if ((shape1 == "rock" && shape2 == "rock") ||
+                (shape1 == "paper" && shape2 == "paper") ||
+                (shape1 == "scissors" && shape2 == "scissors"))
             {
                 Console.WriteLine(Outcome.Draw);
                 return Outcome.Draw.ToString();
             }
-            else
-            {
-                Console.WriteLine(Outcome.Invalid);
-                return Outcome.Invalid.ToString();
-            }
+          
+            Console.WriteLine(Outcome.Invalid);
+            return Outcome.Invalid.ToString();
+           
         }
     }
 }

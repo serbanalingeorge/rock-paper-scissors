@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,15 +51,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,27 +85,51 @@
     <Compile Include="DBConnection\DBConnection.cs" />
     <Compile Include="DBConnection\CreateTransaction.cs" />
     <Compile Include="DBConnection\RetrieveData.cs" />
-    <Compile Include="DisplayMessage.cs" />
+    <Compile Include="Helper\SqlQuery.cs" />
+    <Compile Include="Helper\DisplayMessage.cs" />
     <Compile Include="Enums\WebDriver.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="StrategyPattern\Context\Game.cs" />
     <Compile Include="Enums\Outcome.cs" />
     <Compile Include="GameRules\DbDataRules.cs" />
+    <Compile Include="Helper\Base.cs" />
+    <Compile Include="Helper\BaseDB.cs" />
+    <Compile Include="Helper\Data.cs" />
+    <Compile Include="HtmlReport\Html.cs" />
+    <Compile Include="HtmlReport\HtmlGenerator.cs" />
+    <Compile Include="NewGame\Contracts\IHand.cs" />
+    <Compile Include="NewGame\Entities\ActionEnum.cs" />
+    <Compile Include="NewGame\Entities\Game.cs" />
+    <Compile Include="NewGame\Entities\GameResult.cs" />
+    <Compile Include="NewGame\Entities\Paper.cs" />
+    <Compile Include="NewGame\Entities\Player.cs" />
+    <Compile Include="NewGame\Entities\Rock.cs" />
+    <Compile Include="NewGame\Entities\Scissors.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameRules\Rule.cs" />
-    <Compile Include="Report\HtmlTemplate.cs" />
     <Compile Include="SeleniumStructure\PageFactory\PageFactory.cs" />
-    <Compile Include="StrategyPattern\Context\IPlayer.cs" />
-    <Compile Include="StrategyPattern\Strategies\RandomStrategy.cs" />
+    <Compile Include="StrategyPattern\Context\ComputerPlayer.cs" />
+    <Compile Include="StrategyPattern\Context\GenericClass.cs" />
+    <Compile Include="StrategyPattern\Games\BasicGame.cs" />
+    <Compile Include="StrategyPattern\Games\ComputerVsComputer.cs" />
+    <Compile Include="StrategyPattern\Games\PlayerVsComputer.cs" />
+    <Compile Include="StrategyPattern\Games\PlayerVsPlayer.cs" />
+    <Compile Include="StrategyPattern\Interface\IGame.cs" />
+    <Compile Include="StrategyPattern\Interface\IPlayer.cs" />
+    <Compile Include="StrategyPattern\Shapes\RandomStrategy.cs" />
     <Compile Include="StrategyPattern\Interface\IWeapon.cs" />
-    <Compile Include="StrategyPattern\Strategies\LizardStrategy.cs" />
-    <Compile Include="StrategyPattern\Strategies\PaperStrategy.cs" />
-    <Compile Include="StrategyPattern\Context\Player.cs" />
-    <Compile Include="StrategyPattern\Strategies\RockStrategy.cs" />
-    <Compile Include="StrategyPattern\Strategies\ScissorsStrategy.cs" />
+    <Compile Include="StrategyPattern\Shapes\LizardStrategy.cs" />
+    <Compile Include="StrategyPattern\Shapes\PaperStrategy.cs" />
+    <Compile Include="StrategyPattern\Context\HumanPlayer.cs" />
+    <Compile Include="StrategyPattern\Shapes\RockStrategy.cs" />
+    <Compile Include="StrategyPattern\Shapes\ScissorsStrategy.cs" />
     <Compile Include="Enums\Weapon.cs" />
-    <Compile Include="StrategyPattern\Strategies\SpockStrategy.cs" />
+    <Compile Include="StrategyPattern\Shapes\SpockStrategy.cs" />
     <Compile Include="SeleniumStructure\WebDriver\WebDriver.cs" />
+    <Compile Include="XmlParsing\CreateXml.cs" />
+    <Compile Include="XmlParsing\ParseXmlReport.cs" />
+    <Compile Include="XmlParsing\WriteFile.cs" />
+    <Compile Include="XmlParsing\XmlToHtml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -114,6 +147,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Specflow\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -121,6 +157,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.43\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.43\build\Selenium.Chrome.WebDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
   </Target>
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.43\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.43\build\Selenium.Chrome.WebDriver.targets')" />
 </Project>

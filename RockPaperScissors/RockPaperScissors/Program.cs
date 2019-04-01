@@ -1,31 +1,43 @@
 ﻿using System;
-using RockPaperScissors.DBConnection;
-using RockPaperScissors.GameRules;
-using RockPaperScissors.Report;
+using System.Threading;
+using RockPaperScissors.Helper;
+using RockPaperScissors.StrategyPattern.Context;
+using RockPaperScissors.StrategyPattern.Games;
+using RockPaperScissors.StrategyPattern.Interface;
+using RockPaperScissors.StrategyPattern.Shapes;
+using Game = RockPaperScissors.StrategyPattern.Context.Game;
+
 
 
 namespace RockPaperScissors
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Game game = new Game();
-            game.DisplayGame();
-            game.ChooseGame();
+            var game = new Game();
+            DisplayMessage.Welcome();
+            game.Play();
 
-            /*var template = new HtmlTemplate(@"C:\Users\george_serban\rock-paper-scissors\Template.txt");
-            var output = template.Render(new
-            {
-                TITLE = "Report",
-                METAKEYWORDS = "key1, key2, key3",
-                BODY = "Body content",
-                ETC = "etc"
-            });*/
-            //Console.WriteLine(output);
+            //-------------------------------
+
+            /*var player1 = new Player("player1", new Rock());
+            var player2 = new Player("player2", new Rock());
+
+            var game = new NewGame.Entities.Game(player1,player2);
+            var result = game.Play();
+
+            Console.WriteLine("Result is: " + result.Draw);*/
+
+            //------------------------------------
+
+            /*GenericClass<IGame> game = new GenericClass<IGame>(new PlayerVsPlayer());
+
+            var val = game.GenericMethod(new PlayerVsPlayer());*/
+          
             Console.ReadLine();
-
         }
-    }
 
+       
+    }
 }

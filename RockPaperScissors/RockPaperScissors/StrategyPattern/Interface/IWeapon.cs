@@ -2,6 +2,6 @@
 {
     public interface IWeapon
     {
-        int Use();
+        Weapon Use();
     }
 }

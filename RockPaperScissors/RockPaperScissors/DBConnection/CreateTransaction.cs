@@ -6,29 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using RockPaperScissors.Helper;
 
 namespace RockPaperScissors.DBConnection
 {
     
-    public class CreateTransaction
+    public abstract class CreateTransaction
     {
-        DbConnection dbConnection = new DbConnection();
-
-        private const string QueryAdd = "INSERT INTO dbo.Shapes (shapeID,shape) " +
-                                        "VALUES (1,'rock'),(2,'paper'),(3,'scissors')";
-
-        private const string QueryDelete = "DELETE FROM dbo.Shapes";
+        public readonly DbConnection DbConnection = new DbConnection();
 
         [SetUp]
-        public void AddValueDB()
+        public void AddValueDb()
         {
-            dbConnection.Transaction(QueryAdd);
+            DbConnection.Transaction(SqlQuery.Add());
         }
 
         [TearDown]
         public void DeleteValueDb()
         {
-            dbConnection.Transaction(QueryDelete);
+            DbConnection.Transaction(SqlQuery.Delete());
         }
     }
 }

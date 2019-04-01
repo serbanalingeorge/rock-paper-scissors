@@ -1,37 +1,35 @@
 ﻿using System;
+using RockPaperScissors.StrategyPattern;
 
 namespace RockPaperScissors.GameRules
 {
     public class Rule
     {
-        public int Winner(int shape1, int shape2)
+        public Outcome Winner(Weapon shape1, Weapon shape2)
         {
-            if ((shape1 == 1 && shape2 == 3) ||
-                (shape1 == 2 && shape2 == 1) ||
-                (shape1 == 3 && shape2 == 2))
+            if ((shape1 == Weapon.Rock && shape2 == Weapon.Scissors) ||
+                (shape1 == Weapon.Paper && shape2 == Weapon.Rock) ||
+                (shape1 == Weapon.Scissors && shape2 == Weapon.Paper))
             {
-                Console.WriteLine("Player/Computer 1 " + Outcome.Won);
-                return (int)Outcome.Won;
+                Console.WriteLine("Result --> 1st Player " + Outcome.Won);
+                return Outcome.Won;
             }
-            else if ((shape1 == 1 && shape2 == 2) ||
-                     (shape1 == 2 && shape2 == 3) ||
-                     (shape1 == 3 && shape2 == 1))
+            if ((shape1 == Weapon.Rock && shape2 == Weapon.Paper) ||
+                (shape1 == Weapon.Paper && shape2 == Weapon.Scissors) ||
+                (shape1 == Weapon.Scissors && shape2 == Weapon.Rock))
             {
-                Console.WriteLine("Player/Computer 1 " + Outcome.Lost);
-                return (int)Outcome.Lost;
+                Console.WriteLine("Result --> 1st Player " + Outcome.Lost);
+                return Outcome.Lost;
             }
-            else if ((shape1 == 1 && shape2 == 1) ||
-                     (shape1 == 2 && shape2 == 2) ||
-                     (shape1 == 3 && shape2 == 3))
+            if ((shape1 == Weapon.Rock && shape2 == Weapon.Rock) ||
+                (shape1 == Weapon.Paper && shape2 == Weapon.Paper) ||
+                (shape1 == Weapon.Scissors && shape2 == Weapon.Scissors))
             {
-                Console.WriteLine("It is a " + Outcome.Draw);
-                return (int)Outcome.Draw;
+                Console.WriteLine("Result --> It is a " + Outcome.Draw);
+                return Outcome.Draw;
             }
-            else
-            {
-                Console.WriteLine(Outcome.Invalid);
-                return (int)Outcome.Invalid;
-            }
+            Console.WriteLine(Outcome.Invalid);
+            return Outcome.Invalid;
         }
     }
 }

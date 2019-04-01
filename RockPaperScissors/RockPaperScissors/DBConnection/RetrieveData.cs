@@ -11,17 +11,17 @@ namespace RockPaperScissors.DBConnection
 {
     public class RetrieveData
     {
-        private string connectionString = "Server=(localdb)\\v13.0;Database=TestDB1;Integrated Security=True;";
-        readonly DataTable result = new DataTable();
+        private const string ConnectionString = "Server=(localdb)\\v13.0;Database=TestDB1;Integrated Security=True;";
+        private readonly DataTable result = new DataTable();
         public string RetrieveDbData(string query)
         {
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (var command = new SqlCommand(query, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         result.Load(reader);
                         var text = Convert.ToString(result.Rows[0]["shape"]);
